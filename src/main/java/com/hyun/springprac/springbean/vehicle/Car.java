@@ -3,15 +3,17 @@ package com.hyun.springprac.springbean.vehicle;
 public class Car implements Vehicle {
 
     private final VehiclePart vehiclePart;
+    private final VehicleKey vehicleKey;
 
-    public Car(VehiclePart vehiclePart) {
+    public Car(VehiclePart vehiclePart, VehicleKey vehicleKey) {
         this.vehiclePart = vehiclePart;
+        this.vehicleKey = vehicleKey;
     }
 
     @Override
     public void start() {
 
-        if (vehiclePart instanceof CarPart) {
+        if (vehiclePart instanceof CarPart  && vehicleKey instanceof CarKey) {
             System.out.println("Car.start");
             return;
         }

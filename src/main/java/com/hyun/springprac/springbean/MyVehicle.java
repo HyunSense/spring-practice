@@ -17,11 +17,10 @@ public class MyVehicle {
         Vehicle car = applicationContext.getBean("vehicle", Vehicle.class);
 
         System.out.println("---- MY VEHICLE: " + car.getClass().getSimpleName() + "----");
+
         car.start();
         car.stop();
 
     }
-
-
 
 }
