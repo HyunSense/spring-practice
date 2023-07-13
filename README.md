@@ -3,30 +3,39 @@
 ### 목표
 - 순수 스프링의 원리 이해하기
 - 순수 스프링을 사용하여 예제 만들어보기
-- 스프링의 장점 알아보기
+- 스프링의 장점 알아보기         
 
----
-### 스프링컨테이너는 '싱글톤 컨테이너' 이다.
 
-**싱글톤 컨테이너를 알기전 싱글톤 패턴의 장,단점을 파악하자**
-**하나의 객체를 공유하여 효율적으로 사용한다는 장점이 있다.**   
-ex) 고객의 요청이 올때마다 객체를 생성하는것이 아닌, 만들어진 객체를 공유(요청마다 쓰레드 생성후 여러 쓰레드가 접근) 한다.   
-**하지만 큰 단점들도 있다.**
+---   
 
-**싱글톤 패턴 문제점**
-- 싱글톤 패턴을 구현하는 코드자체가 많이 들어간다.
-- 클라이언트가 구체 클래스에 의존한다 -> DIP 위반
-- 클라이언트가 구체클래스에 의존하기 때문에 OCP 원칙을 위반할 가능성이 높다.
-- 테스트하기가 힘들다.
-- 내부 속성을 변경 or 초기화가 어렵다.
-- private 생성자로 자식 클래스를 생성하기 어렵다.
-- **즉, 유연성이 떨어진다.**
-- **안티패턴**으로 불리기도 한다.
 
-### 싱글톤 컨테이너
-- 스프링 컨테이너는 싱글톤 패턴의 문제점을 해결하면서, 객체 인스턴스를 싱글톤(1개만 생성)으로 관리한다.
-- 스프링 컨테이너(싱글톤 컨테이너)는 싱글톤 패턴의 단점을 보완하여 싱글톤 객체를 생성하고 관리하게된다.
-- 이러한 기능을 **'싱글톤 레지스트리'** 라고한다.
+## 스프링컨테이너의 빈 조회 방법
+```java
+// AppConfig.class : 설정정보
+ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
-스프링이 싱글톤 방식만 지원하는것은 아니다. 요청할때마다 새로운 객체를 생성하여 반환하는 기능또한 제공하고 있다.
+// 빈 이름, 빈 클래스로 출력
+applicationcontext.getBean("beanName", beanClass);
 
+//빈 이름으로 조회
+applicationcontext.getBean("beanName");
+
+//빈 클래스로 조회
+applicationcontext.getBean(beanClass);
+```
+
+
+## Exception Test(Junit & AssertJ)
+### 잘못된 빈 이름으로 조회하였을 경우
+
+
+```java
+
+//AssertJ(AssertJ의 Assertions), assertThatThrownBy 
+Assertions.assertThatThrownBy(() -> applicationContext.getBean("xxxxx", Vehicle.class))
+        .isInstanceOf(NoSuchBeanDefinitionException.class);
+
+//Junit (Junit의 Assertions 주의), asserThrows
+Assertions.assertThrows(NoSuchBeanDefinitionException.class,
+                () -> applicationContext.getBean("xxxxx", Vehicle.class));
+```
