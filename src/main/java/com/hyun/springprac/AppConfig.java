@@ -11,12 +11,18 @@ public class AppConfig {
     @Bean
     public Vehicle vehicle() {
 
-        return new Car(vehiclePart());
+        return new Car(vehiclePart(), vehicleKey());
     }
 
     @Bean
     public VehiclePart vehiclePart() {
 
         return new CarPart();
+    }
+
+    @Bean
+    public VehicleKey vehicleKey() {
+
+        return new CarKey();
     }
 }
