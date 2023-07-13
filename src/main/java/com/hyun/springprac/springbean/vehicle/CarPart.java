@@ -1,5 +1,8 @@
 package com.hyun.springprac.springbean.vehicle;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CarPart implements VehiclePart{
     @Override
     public void engine() {
