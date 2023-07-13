@@ -25,6 +25,7 @@ public class SpringBeanSingletonTest {
         System.out.println("vehicle2 = " + vehicle2);
 
         //객체의 참조값이 같은지 확인
+
         Assertions.assertThat(vehicle1).isSameAs(vehicle2);
 
     }

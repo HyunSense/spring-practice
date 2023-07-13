@@ -3,6 +3,7 @@ package com.hyun.springprac.springbean;
 import com.hyun.springprac.AppConfig;
 import com.hyun.springprac.springbean.vehicle.*;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,6 +16,7 @@ class MyVehicleTest {
 
 
     @Test
+    @DisplayName("빈 등록 테스트")
     void vehicleTypeTest() {
 
         Vehicle vehicle = applicationContext.getBean("vehicle", Vehicle.class);

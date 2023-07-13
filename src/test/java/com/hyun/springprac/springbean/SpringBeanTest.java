@@ -1,8 +1,11 @@
 package com.hyun.springprac.springbean;
 
 import com.hyun.springprac.AppConfig;
+import com.hyun.springprac.springbean.vehicle.Vehicle;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -45,5 +48,19 @@ public class SpringBeanTest {
             }
 
         }
+    }
+
+    @Test
+    @DisplayName("잘못된 빈 이름으로 조회 할 경우")
+    void findBeanByNameX() {
+//        applicationContext.getBean("xxxxx", Vehicle.class);
+
+        //assertJ의 assertThatThrownBy()
+        Assertions.assertThatThrownBy(() -> applicationContext.getBean("xxxxx", Vehicle.class))
+                .isInstanceOf(NoSuchBeanDefinitionException.class);
+
+        //Junit의 assertThorws
+//        Assertions.assertThrows(NoSuchBeanDefinitionException.class,
+//                () -> applicationContext.getBean("xxxxx", Vehicle.class));
     }
 }
