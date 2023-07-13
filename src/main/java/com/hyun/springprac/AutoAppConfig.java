@@ -1,4 +1,4 @@
-package com.hyun.springprac.springbean;
+package com.hyun.springprac;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
