@@ -21,12 +21,12 @@ public class MyVehicle {
 
         //@ComponentScan & Autowired를 통한 Bean 조회 해보기
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutoAppConfig.class);
-        Vehicle airPlane = applicationContext.getBean("airPlane", AirPlane.class);
+        Vehicle vehicle = applicationContext.getBean(Vehicle.class);
 
-        System.out.println("---- MY VEHICLE: " + airPlane.getClass().getSimpleName() + "----");
+        System.out.println("---- MY VEHICLE: " + vehicle.getClass().getSimpleName() + "----");
 
-        airPlane.start();
-        airPlane.stop();
+        vehicle.start();
+        vehicle.stop();
 
     }
 
